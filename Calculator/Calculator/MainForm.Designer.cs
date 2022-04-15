@@ -166,6 +166,7 @@
             this.Controls.Add(this.DisplayNumberTextBox);
             this.Name = "MainForm";
             this.Text = "MainForm";
+            this.Click += new System.EventHandler(this.MainForm_Click);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyUp);
             this.ResumeLayout(false);
             this.PerformLayout();
