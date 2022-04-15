@@ -99,7 +99,7 @@ namespace Calculator
                 }
                 else
                 {
-                    DisplayNumberTextBox.Text = "Wrong Format";
+                    DisplayNumberTextBox.Text = "not a number";
                     DisplayNumberTextBox.SelectAll();
                 }
             }
@@ -127,7 +127,7 @@ namespace Calculator
                 }
                 else
                 {
-                    DisplayNumberTextBox.Text = "Wrong Format";
+                    DisplayNumberTextBox.Text = "not a number";
                     DisplayNumberTextBox.SelectAll();
                 }
             }
@@ -156,7 +156,7 @@ namespace Calculator
                 }
                 else
                 {
-                    DisplayNumberTextBox.Text = "Wrong Format";
+                    DisplayNumberTextBox.Text = "not a number";
                     DisplayNumberTextBox.SelectAll();
                 }
             }
@@ -183,7 +183,7 @@ namespace Calculator
                 }
                 else
                 {
-                    DisplayNumberTextBox.Text = "Wrong Format";
+                    DisplayNumberTextBox.Text = "not a number";
                     DisplayNumberTextBox.SelectAll();
                 }
             }
@@ -292,7 +292,7 @@ namespace Calculator
                     }
                     else
                     {
-                        DisplayNumberTextBox.Text = "Wrong Format";
+                        DisplayNumberTextBox.Text = "not a number";
                         DisplayNumberTextBox.SelectAll();
                     }
                     break;
@@ -305,7 +305,7 @@ namespace Calculator
                     }
                     else
                     {
-                        DisplayNumberTextBox.Text = "Wrong Format";
+                        DisplayNumberTextBox.Text = "not a number";
                         DisplayNumberTextBox.SelectAll();
                     }
                     break;
@@ -320,7 +320,7 @@ namespace Calculator
                         }
                         else
                         {
-                            DisplayNumberTextBox.Text = "Wrong Format";
+                            DisplayNumberTextBox.Text = "not a number";
                             DisplayNumberTextBox.SelectAll();
                         }
                     }
@@ -339,7 +339,7 @@ namespace Calculator
                     }
                     else
                     {
-                        DisplayNumberTextBox.Text = "Wrong Format";
+                        DisplayNumberTextBox.Text = "not a number";
                         DisplayNumberTextBox.SelectAll();
                     }
                     break;

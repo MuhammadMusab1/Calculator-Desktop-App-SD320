@@ -121,7 +121,7 @@
             // 
             // LocationalButton
             // 
-            this.LocationalButton.Location = new System.Drawing.Point(595, 159);
+            this.LocationalButton.Location = new System.Drawing.Point(546, 134);
             this.LocationalButton.Name = "LocationalButton";
             this.LocationalButton.Size = new System.Drawing.Size(75, 23);
             this.LocationalButton.TabIndex = 8;
@@ -131,7 +131,7 @@
             // 
             // DecimalButton
             // 
-            this.DecimalButton.Location = new System.Drawing.Point(595, 114);
+            this.DecimalButton.Location = new System.Drawing.Point(546, 105);
             this.DecimalButton.Name = "DecimalButton";
             this.DecimalButton.Size = new System.Drawing.Size(75, 23);
             this.DecimalButton.TabIndex = 9;
@@ -141,7 +141,7 @@
             // 
             // BinaryButton
             // 
-            this.BinaryButton.Location = new System.Drawing.Point(595, 75);
+            this.BinaryButton.Location = new System.Drawing.Point(546, 75);
             this.BinaryButton.Name = "BinaryButton";
             this.BinaryButton.Size = new System.Drawing.Size(75, 23);
             this.BinaryButton.TabIndex = 10;
