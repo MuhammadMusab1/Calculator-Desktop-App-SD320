@@ -164,6 +164,7 @@
             this.Controls.Add(this.OperationLabel);
             this.Controls.Add(this.DisplayNumberLabel);
             this.Controls.Add(this.DisplayNumberTextBox);
+            this.KeyPreview = true;
             this.Name = "MainForm";
             this.Text = "MainForm";
             this.Click += new System.EventHandler(this.MainForm_Click);

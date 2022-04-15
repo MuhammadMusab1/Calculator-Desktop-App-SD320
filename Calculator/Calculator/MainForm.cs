@@ -74,6 +74,33 @@ namespace Calculator
 
         private void AddButton_Click(object sender, EventArgs e)
         {
+            //The contents of the number display are cleared, 
+            //and the number within becomes the Stored Operand. 
+            //The selected Operation becomes the Stored Operation.
+
+            if (string.IsNullOrEmpty(DisplayNumberTextBox.Text))
+            {
+                Operation.Text = "+";
+                StoredOperation = Operation.Text;
+            }
+            else
+            {
+                PerformThePreviousOperation();
+                decimal output = 0;
+                if (decimal.TryParse(DisplayNumberTextBox.Text, out output))
+                {
+                    Operation.Text = "+";
+                    StoredOperation = Operation.Text;
+                    StoredNumber = output;
+                    DisplayNumberTextBox.Text = StoredNumber.ToString("0.00");
+
+                }
+                else
+                {
+                    DisplayNumberTextBox.Text = "Wrong Format";
+                    DisplayNumberTextBox.SelectAll();
+                }
+            }
 
         }
 
@@ -110,6 +137,77 @@ namespace Calculator
         private void MainForm_Click(object sender, EventArgs e)
         {
             Operation.Focus();
+        }
+
+        public void PerformThePreviousOperation()
+        {
+            switch (StoredOperation)
+            {
+                case "+":
+                    decimal output = 0;
+                    if (decimal.TryParse(DisplayNumberTextBox.Text, out output))
+                    {
+                        StoredNumber += output;
+                        DisplayNumberTextBox.Text = StoredNumber.ToString("0.00");
+
+                    }
+                    else
+                    {
+                        DisplayNumberTextBox.Text = "Wrong Format";
+                        DisplayNumberTextBox.SelectAll();
+                    }
+                    break;
+                case "-":
+                    if (decimal.TryParse(DisplayNumberTextBox.Text, out output))
+                    {
+                        StoredNumber += output;
+                        DisplayNumberTextBox.Text = StoredNumber.ToString("0.00");
+
+                    }
+                    else
+                    {
+                        DisplayNumberTextBox.Text = "Wrong Format";
+                        DisplayNumberTextBox.SelectAll();
+                    }
+                    break;
+                case "/":
+                    try
+                    {
+                        if (decimal.TryParse(DisplayNumberTextBox.Text, out output))
+                        {
+                            StoredNumber += output;
+                            DisplayNumberTextBox.Text = StoredNumber.ToString("0.00");
+
+                        }
+                        else
+                        {
+                            DisplayNumberTextBox.Text = "Wrong Format";
+                            DisplayNumberTextBox.SelectAll();
+                        }
+                    }
+                    catch (DivideByZeroException ex)
+                    {
+                        DisplayNumberTextBox.Text = "cannot divide by zero";
+                        Operation.Text = "";
+                    }
+                    break;
+                case "*":
+                    if (decimal.TryParse(DisplayNumberTextBox.Text, out output))
+                    {
+                        StoredNumber += output;
+                        DisplayNumberTextBox.Text = StoredNumber.ToString("0.00");
+
+                    }
+                    else
+                    {
+                        DisplayNumberTextBox.Text = "Wrong Format";
+                        DisplayNumberTextBox.SelectAll();
+                    }
+                    break;
+                default:
+                    break;
+            }
+
         }
     }
 }
