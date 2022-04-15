@@ -1,3 +1,5 @@
+using System.Text;
+
 namespace Calculator
 {
     public partial class MainForm : Form
@@ -189,6 +191,32 @@ namespace Calculator
 
         private void BinaryButton_Click(object sender, EventArgs e)
         {
+            //Decimal To Binary
+            double number = 0;
+
+
+            if (double.TryParse(DisplayNumberTextBox.Text, out number))
+            {
+                if (number % 1 == 0)
+                {
+                    if (number >= 0)
+                    {
+                        DecimalToBinary(number);
+                    }
+                    else
+                    {
+                        DisplayNumberTextBox.Text = "number has to be positive";
+                    }
+                }
+                else
+                {
+                    DisplayNumberTextBox.Text = "number has to be an integer";
+                }
+            }
+            else
+            {
+                DisplayNumberTextBox.Text = "not a number";
+            }
 
         }
 
@@ -205,6 +233,17 @@ namespace Calculator
         private void MainForm_Click(object sender, EventArgs e)
         {
             Operation.Focus();
+        }
+        private void DisplayNumberTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+            if (e.KeyChar == '.')
+            {
+                e.Handled = false;
+            }
         }
 
         public void PerformThePreviousOperation()
@@ -228,7 +267,7 @@ namespace Calculator
                 case "-":
                     if (decimal.TryParse(DisplayNumberTextBox.Text, out output))
                     {
-                        StoredNumber += output;
+                        StoredNumber -= output;
                         DisplayNumberTextBox.Text = StoredNumber.ToString("0.00");
 
                     }
@@ -243,7 +282,7 @@ namespace Calculator
                     {
                         if (decimal.TryParse(DisplayNumberTextBox.Text, out output))
                         {
-                            StoredNumber += output;
+                            StoredNumber /= output;
                             DisplayNumberTextBox.Text = StoredNumber.ToString("0.00");
 
                         }
@@ -262,7 +301,7 @@ namespace Calculator
                 case "*":
                     if (decimal.TryParse(DisplayNumberTextBox.Text, out output))
                     {
-                        StoredNumber += output;
+                        StoredNumber *= output;
                         DisplayNumberTextBox.Text = StoredNumber.ToString("0.00");
 
                     }
@@ -277,16 +316,48 @@ namespace Calculator
             }
 
         }
-        private void DisplayNumberTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        public void DecimalToBinary(double number)
         {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            int power = PowerOfTwoLessThanNumber(number);
+            double greatestPowerOfTwoLessThanNumber = Math.Pow(2, power);
+
+            StringBuilder binaryString = new StringBuilder();
+            while (power >= 0)
             {
-                e.Handled = true;
+                if (greatestPowerOfTwoLessThanNumber <= number)
+                {
+                    binaryString.Append("1");
+                    number -= greatestPowerOfTwoLessThanNumber;
+                    power--;
+                    greatestPowerOfTwoLessThanNumber = Math.Pow(2, power);
+                }
+                else if (greatestPowerOfTwoLessThanNumber > number)
+                {
+                    binaryString.Append("0");
+                    power--;
+                    greatestPowerOfTwoLessThanNumber = Math.Pow(2, power);
+                }
             }
-            if (e.KeyChar == '.')
+            DisplayNumberTextBox.Text = $"{binaryString}";
+        }
+        public int PowerOfTwoLessThanNumber(double number)
+        {
+            double powerOfTwo;
+            int power = 0;
+            bool check = false;
+
+            while (!check)
             {
-                e.Handled = false;
+                powerOfTwo = Math.Pow(2, power);
+                if (powerOfTwo > number)
+                {
+                    check = true;
+                    break;
+                }
+                power++;
             }
+            power--;
+            return power;
         }
     }
 }
