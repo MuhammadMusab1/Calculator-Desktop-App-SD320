@@ -86,6 +86,7 @@
             this.AddButton.TabIndex = 4;
             this.AddButton.Text = "Add";
             this.AddButton.UseVisualStyleBackColor = true;
+            this.AddButton.Click += new System.EventHandler(this.AddButton_Click);
             // 
             // SubtractButton
             // 
@@ -95,6 +96,7 @@
             this.SubtractButton.TabIndex = 5;
             this.SubtractButton.Text = "Subtract";
             this.SubtractButton.UseVisualStyleBackColor = true;
+            this.SubtractButton.Click += new System.EventHandler(this.SubtractButton_Click);
             // 
             // DivideButton
             // 
@@ -104,6 +106,7 @@
             this.DivideButton.TabIndex = 6;
             this.DivideButton.Text = "Divide";
             this.DivideButton.UseVisualStyleBackColor = true;
+            this.DivideButton.Click += new System.EventHandler(this.DivideButton_Click);
             // 
             // MultiplyButton
             // 
@@ -113,6 +116,7 @@
             this.MultiplyButton.TabIndex = 7;
             this.MultiplyButton.Text = "Multiply";
             this.MultiplyButton.UseVisualStyleBackColor = true;
+            this.MultiplyButton.Click += new System.EventHandler(this.MultiplyButton_Click);
             // 
             // LocationalButton
             // 
@@ -122,6 +126,7 @@
             this.LocationalButton.TabIndex = 8;
             this.LocationalButton.Text = "LOC";
             this.LocationalButton.UseVisualStyleBackColor = true;
+            this.LocationalButton.Click += new System.EventHandler(this.LocationalButton_Click);
             // 
             // DecimalButton
             // 
@@ -131,6 +136,7 @@
             this.DecimalButton.TabIndex = 9;
             this.DecimalButton.Text = "DEC";
             this.DecimalButton.UseVisualStyleBackColor = true;
+            this.DecimalButton.Click += new System.EventHandler(this.DecimalButton_Click);
             // 
             // BinaryButton
             // 
@@ -140,6 +146,7 @@
             this.BinaryButton.TabIndex = 10;
             this.BinaryButton.Text = "BIN";
             this.BinaryButton.UseVisualStyleBackColor = true;
+            this.BinaryButton.Click += new System.EventHandler(this.BinaryButton_Click);
             // 
             // MainForm
             // 
@@ -159,6 +166,7 @@
             this.Controls.Add(this.DisplayNumberTextBox);
             this.Name = "MainForm";
             this.Text = "MainForm";
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyUp);
             this.ResumeLayout(false);
             this.PerformLayout();
 
