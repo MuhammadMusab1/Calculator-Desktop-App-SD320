@@ -106,6 +106,29 @@ namespace Calculator
 
         private void SubtractButton_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(DisplayNumberTextBox.Text))
+            {
+                Operation.Text = "-";
+                StoredOperation = Operation.Text;
+            }
+            else
+            {
+                PerformThePreviousOperation();
+                decimal output = 0;
+                if (decimal.TryParse(DisplayNumberTextBox.Text, out output))
+                {
+                    Operation.Text = "-";
+                    StoredOperation = Operation.Text;
+                    StoredNumber = output;
+                    DisplayNumberTextBox.Text = StoredNumber.ToString("0.00");
+
+                }
+                else
+                {
+                    DisplayNumberTextBox.Text = "Wrong Format";
+                    DisplayNumberTextBox.SelectAll();
+                }
+            }
 
         }
 
@@ -208,6 +231,17 @@ namespace Calculator
                     break;
             }
 
+        }
+        private void DisplayNumberTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+            if (e.KeyChar == '.')
+            {
+                e.Handled = false;
+            }
         }
     }
 }

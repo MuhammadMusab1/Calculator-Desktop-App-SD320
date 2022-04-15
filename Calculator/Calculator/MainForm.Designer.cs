@@ -47,6 +47,7 @@
             this.DisplayNumberTextBox.Name = "DisplayNumberTextBox";
             this.DisplayNumberTextBox.Size = new System.Drawing.Size(179, 23);
             this.DisplayNumberTextBox.TabIndex = 0;
+            this.DisplayNumberTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DisplayNumberTextBox_KeyPress);
             // 
             // DisplayNumberLabel
             // 
