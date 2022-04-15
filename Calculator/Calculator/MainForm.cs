@@ -222,6 +222,15 @@ namespace Calculator
 
         private void DecimalButton_Click(object sender, EventArgs e)
         {
+            //Binary to Decimal
+            if (CheckIfNumberIsBinary(DisplayNumberTextBox.Text))
+            {
+                BinaryToDecimal(DisplayNumberTextBox.Text);
+            }
+            else
+            {
+                DisplayNumberTextBox.Text = "number not binary";
+            }
 
         }
 
@@ -358,6 +367,37 @@ namespace Calculator
             }
             power--;
             return power;
+        }
+        public bool CheckIfNumberIsBinary(string number)
+        {
+            for (int i = 0; i < number.Length; i++)
+            {
+                if (number[i] != '0' && number[i] != '1')
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+        public void BinaryToDecimal(string binaryString)
+        {
+            double decimalNumber = 0;
+            int power2 = binaryString.Length - 1;
+
+            for (int i = 0; i < binaryString.Length; i++)
+            {
+                if (binaryString[i] == '1')
+                {
+                    decimalNumber += (Math.Pow(2, power2) * 1);
+                    power2--;
+                }
+                if (binaryString[i] == '0')
+                {
+                    decimalNumber += (Math.Pow(2, power2) * 0);
+                    power2--;
+                }
+            }
+            DisplayNumberTextBox.Text = decimalNumber.ToString();
         }
     }
 }
