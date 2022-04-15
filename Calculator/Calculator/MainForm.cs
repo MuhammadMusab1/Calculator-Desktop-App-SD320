@@ -236,6 +236,29 @@ namespace Calculator
 
         private void LocationalButton_Click(object sender, EventArgs e)
         {
+            double number = 0;
+            if (double.TryParse(DisplayNumberTextBox.Text, out number))
+            {
+                if (number % 1 == 0)
+                {
+                    if (number >= 0)
+                    {
+                        DecimalToLocationalNumeral(number);
+                    }
+                    else
+                    {
+                        DisplayNumberTextBox.Text = "number has to be positive";
+                    }
+                }
+                else
+                {
+                    DisplayNumberTextBox.Text = "number has to be an integer";
+                }
+            }
+            else
+            {
+                DisplayNumberTextBox.Text = "not a number";
+            }
 
         }
 
@@ -398,6 +421,54 @@ namespace Calculator
                 }
             }
             DisplayNumberTextBox.Text = decimalNumber.ToString();
+        }
+        public void DecimalToLocationalNumeral(double number)
+        {
+            int power = PowerOfTwoLessThanNumber(number);
+            double greatestPowerOfTwoLessThanNumber;
+            if (power >= 26)
+            {
+                greatestPowerOfTwoLessThanNumber = Math.Pow(2, 25);
+            }
+            else
+            {
+                greatestPowerOfTwoLessThanNumber = Math.Pow(2, power);
+            }
+            List<double> numbersThatAddUpToNumber = new List<double>();
+            List<char> Alphabets = "abcdefghijklmnopqrstuvwxyz".ToCharArray().ToList();
+            StringBuilder numerals = new StringBuilder();
+
+            while (number > 0)
+            {
+                if (greatestPowerOfTwoLessThanNumber <= number)
+                {
+                    number -= greatestPowerOfTwoLessThanNumber;
+                    numbersThatAddUpToNumber.Add(greatestPowerOfTwoLessThanNumber);
+                }
+                else
+                {
+                    power--;
+                    greatestPowerOfTwoLessThanNumber = Math.Pow(2, power);
+                }
+            }
+            for (int i = numbersThatAddUpToNumber.Count - 1; i >= 0; i--)
+            {
+                int powerForNumber = GetPowerOfTwoForNumber(numbersThatAddUpToNumber[i]);
+                numerals.Append(Alphabets[powerForNumber]);
+            }
+            DisplayNumberTextBox.Text = numerals.ToString();
+        }
+        public int GetPowerOfTwoForNumber(double number)
+        {
+            int power = 0;
+            double checkNumber = 0;
+            while (number != checkNumber)
+            {
+                checkNumber = Math.Pow(2, power);
+                power++;
+            }
+            power--;
+            return power;
         }
     }
 }
